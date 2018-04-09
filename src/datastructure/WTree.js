@@ -100,5 +100,14 @@ function OBTGetMax() {
 // find Node by data for Ordered Binary Tree
 function OBTFindNodeBy(data) {
     var current = this.root;
-
+    while (current != null) {
+        if (current.data == data) {
+            return current;
+        } else if (data < current.data) {
+            current = current.left;
+        } else {
+            current = current.right;
+        }
+    }
+    return null;
 }
