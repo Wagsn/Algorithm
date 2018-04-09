@@ -19,6 +19,9 @@ function BTNode(data, left, right){
 function OBTree(){
     this.root =null; // BTNode
     this.insert =OBTInsert;
+    this.inorder =BTInorder;
+    this.preorder =BTPreorder;
+    this.postorder =BTPostorder;
 }
 // Full/Complete/Perfect Binary Tree
 
@@ -93,4 +96,9 @@ function OBTGetMax() {
         current =current.right;
     }
     return current.data;
+}
+// find Node by data for Ordered Binary Tree
+function OBTFindNodeBy(data) {
+    var current = this.root;
+
 }
