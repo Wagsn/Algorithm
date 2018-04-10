@@ -2,9 +2,7 @@
 class Set {
     constructor() {
         this.dataStore = []; // Array
-        this.size = ()=>{
-            return this.dataStore.length; // Array
-        };
+        this.size = CSize;
         this.add =SAdd;
     }
 }
@@ -21,4 +19,11 @@ function SAdd(item){
         return true;
     }
 }
-
+// remove a item for Set
+function SRemove(item){
+    var pos = this.dataStore.indexOf(item);
+    if(pos > -1){ //
+        return this.dataStore.splice(pos, 1); // 从pos位置删除1个元素并返回
+    }
+    return null;
+}
