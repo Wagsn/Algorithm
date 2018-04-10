@@ -1,27 +1,36 @@
 // Binary Tree
-
 // Tree Node
-function TNode(data, child, next){ //next == brother Node
-    this.data =data;
-    this.child =child;
-    this.next =next;
+class TNode {
+    constructor(data, child, next) {
+        this.data = data;
+        this.child = child;
+        this.next = next;
+    }
 }
 // Binary Tree Node
-function BTNode(data, left, right){
-    this.data =data;
-    this.left =left;
-    this.right =right;
-    this.toString =function(){
-        return this.data;
+class BTNode {
+    constructor(data, left, right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+        this.toString = function () {
+            return this.data;
+        };
     }
 }
 // Ordered Binary Tree 有序二叉树, Binary Search Tree
-function OBTree(){
-    this.root =null; // BTNode
-    this.insert =OBTInsert;
-    this.inorder =BTInorder;
-    this.preorder =BTPreorder;
-    this.postorder =BTPostorder;
+class OBTree {
+    constructor() {
+        this.root = null; // BTNode
+        
+        this.insert = OBTInsert;
+        this.inorder = BTInorder;
+        this.preorder = BTPreorder;
+        this.postorder = BTPostorder;
+        this.getMin = OBTGetMin;
+        this.getMax = OBTGetMax;
+        this.findNodeBy = OBTFindNodeBy;
+    }
 }
 // Full/Complete/Perfect Binary Tree
 
@@ -73,6 +82,7 @@ function BTPreorder(node) {
         OBTInorder(node.right);
     }
 }
+
 // Static Postorder traversal for Binary Tree, input node as root
 function BTPostorder(node) {
     if (node != null) {
