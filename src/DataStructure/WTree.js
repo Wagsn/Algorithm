@@ -44,7 +44,7 @@ class OBTree {
 function OBTInsert(data){
     var newNode =new BTNode(data, null, null);
     if(root == null){
-        this.root =neeNode;
+        this.root =newNode;
         return;
     }
     var current =root;

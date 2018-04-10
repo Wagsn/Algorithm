@@ -2,7 +2,9 @@
 class Set {
     constructor() {
         this.dataStore = []; // Array
-        this.size = CSize;
+        this.size = ()=>{
+            return this.dataStore.length; // Array
+        };
         this.add =SAdd;
     }
 }
@@ -19,3 +21,4 @@ function SAdd(item){
         return true;
     }
 }
+
