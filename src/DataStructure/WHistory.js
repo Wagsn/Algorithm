@@ -1,8 +1,14 @@
 // to save history
 function DNode(data, prev, next){
-    this.data = data;
-    this.prev = prev;
-    this.next = next;
+    this.data = data || null;
+    this.prev = prev || null;
+    this.next = next || null;
+}
+function LinkList(){
+    this.first = null;
+    this.last = null;
+    this.cursor = null;
+    
 }
 function History(){
     this.first = null;
@@ -19,6 +25,10 @@ function HAdd(data){
         last.next = new DNode(data, last, null);
         cursor =last =last.next;
     }
+}
+// pop a element at tail for history as linklist
+function LLPop(){
+    
 }
 // add a element after cursor, and all elements delete after cursor for history
 function HChange (data){
