@@ -31,3 +31,4 @@ class DoublyLinkList {
         this.cursor = null;
     }
 }
+

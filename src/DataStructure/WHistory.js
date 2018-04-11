@@ -1,19 +1,12 @@
-// to save history
+// WHistory.js
+// Description: this data structure like a linked list or stack
+// Used To: preserve historical records
+// Node to hold data for Doubly Linked List
 class DNode {
     constructor(data, prev, next) {
         this.data = data || null;
         this.prev = prev || null;
         this.next = next || null;
-    }
-}
-class History {
-    constructor() {
-        this.first = null;
-        this.last = null;
-        this.cursor = null;
-        this.push = HPush;
-        this.pop = HPop;
-        this.change = HChange;
     }
 }
 // add a element at tail for history
@@ -41,9 +34,38 @@ function HChange (data){
         cursor =last =cursor.next;
     }
 }
-
+// to save history
+class History {
+    first;
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.cursor = null;
+        this.push = HPush;
+        this.pop = HPop;
+        this.change = HChange;
+    }
+    // getter of size
+    get size(){
+        let count = 0,
+            currNode = first;
+        while (currNode) {
+            currNode =currNode.next;
+            count++;
+        }
+        return count;
+    }
+}
+// test 
 function main(params) {
-    
+    var history = new History();
+    history.push('001');
+    history.push('002');
+    history.push('003');
+    history.push('004');
+    history.push('005');
+    history.push('006');
+    history.push
 }
 
 main();
