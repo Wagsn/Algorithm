@@ -8,7 +8,8 @@ function History(){
     this.first = null;
     this.last = null;
     this.cursor = null;
-    this.add =
+    this.add = HAdd;
+    this.change = HChange;
 }
 // add a element at tail for history
 function HAdd(data){
