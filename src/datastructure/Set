@@ -1,8 +1,0 @@
-
-class Set<T>{
-  var items =Array<T>();
-}
-
-func Set.add(t: T){
-  
-}

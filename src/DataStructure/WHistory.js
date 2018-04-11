@@ -1,24 +1,23 @@
 // to save history
-function DNode(data, prev, next){
-    this.data = data || null;
-    this.prev = prev || null;
-    this.next = next || null;
+class DNode {
+    constructor(data, prev, next) {
+        this.data = data || null;
+        this.prev = prev || null;
+        this.next = next || null;
+    }
 }
-function LinkList(){
-    this.first = null;
-    this.last = null;
-    this.cursor = null;
-    
-}
-function History(){
-    this.first = null;
-    this.last = null;
-    this.cursor = null;
-    this.add = HAdd;
-    this.change = HChange;
+class History {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.cursor = null;
+        this.push = HPush;
+        this.pop = HPop;
+        this.change = HChange;
+    }
 }
 // add a element at tail for history
-function HAdd(data){
+function HPush(data){
     if(first == null){
         cursor =last =first =new DNode(data, null, null);
     } else {
@@ -27,8 +26,11 @@ function HAdd(data){
     }
 }
 // pop a element at tail for history as linklist
-function LLPop(){
-    
+function HPop(){
+    // 1st use-case: 
+    if (last == null) {
+        
+    }
 }
 // add a element after cursor, and all elements delete after cursor for history
 function HChange (data){
@@ -39,3 +41,9 @@ function HChange (data){
         cursor =last =cursor.next;
     }
 }
+
+function main(params) {
+    
+}
+
+main();

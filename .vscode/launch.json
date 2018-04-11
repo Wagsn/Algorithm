@@ -5,11 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "type": "node",
             "request": "launch",
-            "name": "启动 Chrome 并打开 localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "name": "Mocha Tests",
+            "program": "D:/AppData/NodeJS/node_modules/mocha/bin/_mocha",
+            "args": [
+                "-u",
+                "tdd",
+                "--timeout",
+                "999999",
+                "--colors",
+                "${workspaceFolder}/Algorithm\\src\\datastructure\\WSet.js"
+            ],
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }
