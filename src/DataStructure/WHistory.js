@@ -22,7 +22,7 @@ function HPush(data){
 function HPop(){
     // 1st use-case: 
     if (last == null) {
-        
+        //
     }
 }
 // add a element after cursor, and all elements delete after cursor for history
