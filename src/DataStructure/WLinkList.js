@@ -19,12 +19,16 @@ class DNode{
     }
 }
 class LinkedList {
-    
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.cursor = null;
+    }
 }
 class SinglyLinkList {
     
 }
-class DoublyLinkList {
+class DoublyLinkList extends LinkedList{
     constructor() {
         this.first = null;
         this.last = null;
