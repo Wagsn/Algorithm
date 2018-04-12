@@ -1,0 +1,5 @@
+// WGraph.js
+
+function WGraph(){
+    //
+}
