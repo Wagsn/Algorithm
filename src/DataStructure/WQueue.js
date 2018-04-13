@@ -1,0 +1,6 @@
+// WQueue.js
+
+//
+function Queue(){
+    //
+}
