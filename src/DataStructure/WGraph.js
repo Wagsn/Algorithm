@@ -8,20 +8,19 @@ class WS_Vertex {
         this.data = null;
     }
 }
-function WS_Ege(){
-    //
-    this.weight =0;
-
+class WS_Ege {
+    constructor() {
+        //
+        this.weight = 0;
+    }
 }
 // Graph abstract data type
 class WS_Graph {
     constructor() {
         //
-        this.datas =new Array()
         this.vertexs = [];
         this.eges = [];
         this.add = function addVertex(vertex) {
-            this.datas.
             if (this.vertexs.indexOf(vertex) == -1) {
                 this.vertexs.push(vertex);
             }

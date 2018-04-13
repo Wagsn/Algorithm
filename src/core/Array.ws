@@ -1,8 +1,5 @@
 // Array.ws
 
-interface WS_I_Array{
-    //
-}
 // 
 class WS_Array{
     dataStore =[];
@@ -12,6 +9,6 @@ class WS_Array{
 }
 
 
-function WS_main(params: any) {
+function WS_main(params) {
     var ss
 }
