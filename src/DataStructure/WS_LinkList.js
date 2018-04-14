@@ -31,39 +31,44 @@ class DNode{
 }
 class DoublyLinkList{
     constructor() {
-        this.first = null;
-        this.last = null;
-        this.cursor = null;
-        this._count = 0;
+        this._first = null;
+        this._last = null;
+        this._cursor = null;
+        this._count = 0; // counter
     }
-    add =this.push;
     push(data){
-        if (this.first === null) {
-            this.last =this.first =new DNode(data);
-        } else {
-            this.last =new DNode(data, this.last); // 逆向链接
-            this.last.prev.next =this.last; // 顺向链接
+        // 1st use-case this is a empty list
+        if (this._first === null) {
+            this._cursor =this._last =this._first =new DNode(data);
+        } 
+        // 2nd use-case there had some elements
+        else {
+            this._last =new DNode(data, this._last); // 逆向链接，last point to the new node
+            this._last.prev.next = this._last; // 顺向链接
         }
-        this.cursor =this.last;
-        this._count++;
+        this._cursor =this._last;
+        return ++this._count;
     }
     pop(){
         // 1st use-case non element
-        if (this.first === null) { 
+        if (this._first === null) { 
             return null;
         } 
+        let tempNode =this._last;
         // 2nd use-case one element
-        else if (this.last.prev === null) {
-            let tempNode =this.last;
-            this.cursor =this.first =this.last =null;
+        if (this._last.prev === null) {
+            this._first =this._last =null;
+            --this._count;
         } 
         // 3rd use-case more element
         else {
-            let tempNode =this.last;
-            //
+            this._last =this._last.prev;
+            this._last.next = null;
         }
+        this._cursor = this._last;
+        return tempNode.data;
     }
-    get length(){
+    get size(){
         return this._count;
     }
     toString(){
@@ -76,7 +81,13 @@ class DoublyLinkList{
         result +=' ]'
     }
     toArray(){
-        //
+        let result = new Array(this._count);
+        let temp = this._first;
+        for(let i=0; i < this._count; i++){
+            result[i] = temp.data;
+            temp = temp.next;
+        }
+        return result;
     }
 }
 
