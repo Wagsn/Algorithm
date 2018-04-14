@@ -29,11 +29,15 @@ class DNode{
         this.next = next;
     }
 }
+// 顺向链接 == first to last
+// 逆向链接 == last to first
+// 双向链表 == double link list 
 class DoublyLinkList{
     constructor () {
         this._first = null;
         this._last = null;
         this._cursor = null;
+        this._previous = null; // the previous node for last operation
         this._count = 0; // counter
     }
     // append a element for this list 
@@ -50,7 +54,19 @@ class DoublyLinkList{
         this._cursor =this._last;
         return ++this._count;
     }
-    // remove the last of the list and return it 
+    // insert a element to cursor position and return the count
+    insert (data) {
+        //
+        let newNode = new DNode(data);
+        // 1st use-case cursor is first
+        if (this._cursor == this._first) {
+            this._cursor =this._first =new DNode(data, null, this._first); // 顺向链接, the first point to the new node
+            this._first.next.prev = this._first; // 逆向链接
+        }
+        // 2nd use-case cursor is middle
+        
+    }
+    // remove the last of the list and return it
     pop () {
         // 1st use-case non element
         if (this._first === null) { 
@@ -91,6 +107,19 @@ class DoublyLinkList{
             temp = temp.next;
         }
         return result;
+        let array = this._dataStore;
+        let iMax = array.length - 1;
+        if (iMax == -1)
+            return "[]";
+
+        let b = new StringBuilder();
+        b.append('[');
+        for (let i = 0; ; i++) {
+            b.append(array[i]);
+            if (i == iMax)
+                return b.append(']').toString();
+            b.append(", ");
+        }
     }
 }
 
