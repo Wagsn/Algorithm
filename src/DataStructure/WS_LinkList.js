@@ -30,14 +30,14 @@ class DNode{
     }
 }
 class DoublyLinkList{
-    constructor() {
+    constructor () {
         this._first = null;
         this._last = null;
         this._cursor = null;
         this._count = 0; // counter
     }
-    // appends a element for this list 
-    push(data){
+    // append a element for this list 
+    push (data) {
         // 1st use-case this is a empty list
         if (this._first === null) {
             this._cursor =this._last =this._first =new DNode(data);
@@ -51,7 +51,7 @@ class DoublyLinkList{
         return ++this._count;
     }
     // remove the last of the list and return it 
-    pop(){
+    pop () {
         // 1st use-case non element
         if (this._first === null) { 
             return null;
@@ -70,11 +70,12 @@ class DoublyLinkList{
         this._cursor = this._last;
         return tempNode.data;
     }
-    get size(){
+    get size () {
         return this._count;
     }
-    toString(){
-        let result ='[ ', currNode =first;
+    toString () {
+        if（this._count == 0)
+        let result ='[ ', currNode = this._first;
         while(currNode){
             result +=currNode.toString()+', ';
 
@@ -82,11 +83,11 @@ class DoublyLinkList{
         }
         result +=' ]'
     }
-    toArray(){
-        let result = new Array(this._count);
+    toArray () {
+        let result = new Array(this._count); // the min number is 0
         let temp = this._first;
         for(let i=0; i < this._count; i++){
-            result[i] = temp.data;
+            result[i] = temp.data; // copy this._count times
             temp = temp.next;
         }
         return result;
@@ -94,7 +95,7 @@ class DoublyLinkList{
 }
 
 class Arrays{
-    static toString(array) {
+    static toString (array) {
         if (array == null)
             return "null";
         let iMax = array.length - 1;
