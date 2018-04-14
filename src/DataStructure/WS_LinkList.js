@@ -36,6 +36,7 @@ class DoublyLinkList{
         this._cursor = null;
         this._count = 0; // counter
     }
+    // appends a element for this list 
     push(data){
         // 1st use-case this is a empty list
         if (this._first === null) {
@@ -49,6 +50,7 @@ class DoublyLinkList{
         this._cursor =this._last;
         return ++this._count;
     }
+    // remove the last of the list and return it 
     pop(){
         // 1st use-case non element
         if (this._first === null) { 
@@ -62,8 +64,8 @@ class DoublyLinkList{
         } 
         // 3rd use-case more element
         else {
-            this._last =this._last.prev;
-            this._last.next = null;
+            this._last =this._last.prev; // the last point to previous 
+            this._last.next = null; // break link
         }
         this._cursor = this._last;
         return tempNode.data;
