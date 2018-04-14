@@ -90,14 +90,19 @@ class DoublyLinkList{
         return this._count;
     }
     toString () {
-        if（this._count == 0)
-        let result ='[ ', currNode = this._first;
-        while(currNode){
-            result +=currNode.toString()+', ';
-
-            currNode =currNode.next;
+        if (this._first == null)
+            return "[]";
+        let currNode = this._first;
+        let b = new StringBuilder();
+        b.append("[ ");
+        while (currNode) {
+            b.append(currNode.data);
+            if (currNode.next == null) {
+                return b.append(" ]").toString();
+            }
+            b.append(", ");
+            currNode = currNode.next;
         }
-        result +=' ]'
     }
     toArray () {
         let result = new Array(this._count); // the min number is 0
@@ -107,19 +112,6 @@ class DoublyLinkList{
             temp = temp.next;
         }
         return result;
-        let array = this._dataStore;
-        let iMax = array.length - 1;
-        if (iMax == -1)
-            return "[]";
-
-        let b = new StringBuilder();
-        b.append('[');
-        for (let i = 0; ; i++) {
-            b.append(array[i]);
-            if (i == iMax)
-                return b.append(']').toString();
-            b.append(", ");
-        }
     }
 }
 
