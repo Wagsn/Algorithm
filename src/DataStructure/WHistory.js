@@ -10,28 +10,28 @@ class DNode {
     }
 }
 // add a element at tail for history
-function HPush(data){
-    if(first == null){
-        cursor =last =first =new DNode(data, null, null);
+function HPush(data) {
+    if (first == null) {
+        cursor = last = first = new DNode(data, null, null);
     } else {
         last.next = new DNode(data, last, null);
-        cursor =last =last.next;
+        cursor = last = last.next;
     }
 }
 // pop a element at tail for history as linklist
-function HPop(){
+function HPop() {
     // 1st use-case: 
     if (last == null) {
         //
     }
 }
 // add a element after cursor, and all elements delete after cursor for history
-function HChange (data){
-    if(cursor == null || cursor.next == null) { // no element or add new hisory
+function HChange(data) {
+    if (cursor == null || cursor.next == null) { // no element or add new hisory
         this.add(data);
     } else {
-        cursor.next =new DNode(data, cursor, null);
-        cursor =last =cursor.next;
+        cursor.next = new DNode(data, cursor, null);
+        cursor = last = cursor.next;
     }
 }
 // to save history
@@ -46,11 +46,11 @@ class History {
         this.change = HChange;
     }
     // getter of size
-    get size(){
+    get size() {
         let count = 0,
             currNode = first;
         while (currNode) {
-            currNode =currNode.next;
+            currNode = currNode.next;
             count++;
         }
         return count;

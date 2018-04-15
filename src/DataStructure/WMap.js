@@ -2,16 +2,16 @@
 class WS_Map {
     constructor() {
         this.dataStore = [];
-        this.add =WS_MAdd;
-        this.remove =WS_MRemove;
+        this.add = WS_MAdd;
+        this.remove = WS_MRemove;
     }
 }
 
-function WS_MAdd(key, value){
+function WS_MAdd(key, value) {
     this.dataStore[key] = value;
 }
 
-function WS_MRemove(key){
+function WS_MRemove(key) {
     delete this.dataStore[key];
 }
 

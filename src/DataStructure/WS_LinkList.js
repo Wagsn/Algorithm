@@ -1,12 +1,12 @@
 // link list 
 // hold data for Linked Storage Structure
 class Node {
-    constructor(data =null){
+    constructor(data = null) {
         this.data = data;
     }
 }
-class SNode extends Node{
-    constructor(data =null, next =null){
+class SNode extends Node {
+    constructor(data = null, next = null) {
         super(data);
         thus.next = data;
     }
@@ -19,11 +19,11 @@ class LinkedList {
     }
 }
 class SinglyLinkList {
-    
+
 }
 
-class DNode{
-    constructor(data =null, prev =null, next =null){
+class DNode {
+    constructor(data = null, prev = null, next = null) {
         this.data = data;
         this.prev = prev;
         this.next = next;
@@ -32,8 +32,8 @@ class DNode{
 // 顺向链接 == first to last
 // 逆向链接 == last to first
 // 双向链表 == double link list 
-class DoublyLinkList{
-    constructor () {
+class DoublyLinkList {
+    constructor() {
         this._first = null;
         this._last = null;
         this._cursor = null;
@@ -41,55 +41,55 @@ class DoublyLinkList{
         this._count = 0; // counter
     }
     // append a element for this list 
-    push (data) {
+    push(data) {
         // 1st use-case this is a empty list
         if (this._first === null) {
-            this._cursor =this._last =this._first =new DNode(data);
-        } 
+            this._cursor = this._last = this._first = new DNode(data);
+        }
         // 2nd use-case there had some elements
         else {
-            this._last =new DNode(data, this._last); // 逆向链接，last point to the new node
+            this._last = new DNode(data, this._last); // 逆向链接，last point to the new node
             this._last.prev.next = this._last; // 顺向链接
         }
-        this._cursor =this._last;
+        this._cursor = this._last;
         return ++this._count;
     }
     // insert a element to cursor position and return the count
-    insert (data) {
+    insert(data) {
         //
         let newNode = new DNode(data);
         // 1st use-case cursor is first
         if (this._cursor == this._first) {
-            this._cursor =this._first =new DNode(data, null, this._first); // 顺向链接, the first point to the new node
+            this._cursor = this._first = new DNode(data, null, this._first); // 顺向链接, the first point to the new node
             this._first.next.prev = this._first; // 逆向链接
         }
         // 2nd use-case cursor is middle
-        
+
     }
     // remove the last of the list and return it
-    pop () {
+    pop() {
         // 1st use-case non element
-        if (this._first === null) { 
+        if (this._first === null) {
             return null;
-        } 
-        let tempNode =this._last;
+        }
+        let tempNode = this._last;
         // 2nd use-case one element
         if (this._last.prev === null) {
-            this._first =this._last =null;
+            this._first = this._last = null;
             --this._count;
-        } 
+        }
         // 3rd use-case more element
         else {
-            this._last =this._last.prev; // the last point to previous 
+            this._last = this._last.prev; // the last point to previous 
             this._last.next = null; // break link
         }
         this._cursor = this._last;
         return tempNode.data;
     }
-    get size () {
+    get size() {
         return this._count;
     }
-    toString () {
+    toString() {
         if (this._first == null)
             return "[]";
         let currNode = this._first;
@@ -104,10 +104,10 @@ class DoublyLinkList{
             currNode = currNode.next;
         }
     }
-    toArray () {
+    toArray() {
         let result = new Array(this._count); // the min number is 0
         let temp = this._first;
-        for(let i=0; i < this._count; i++){
+        for (let i = 0; i < this._count; i++) {
             result[i] = temp.data; // copy this._count times
             temp = temp.next;
         }
@@ -115,8 +115,8 @@ class DoublyLinkList{
     }
 }
 
-class Arrays{
-    static toString (array) {
+class Arrays {
+    static toString(array) {
         if (array == null)
             return "null";
         let iMax = array.length - 1;

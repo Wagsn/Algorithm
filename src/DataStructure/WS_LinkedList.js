@@ -1,12 +1,12 @@
 // link list 
 // hold data for Linked Storage Structure
 class Node {
-    constructor(data =null){
+    constructor(data = null) {
         this.data = data;
     }
 }
-class SNode extends Node{
-    constructor(data =null, next =null){
+class SNode extends Node {
+    constructor(data = null, next = null) {
         super(data);
         thus.next = data;
     }
@@ -19,68 +19,70 @@ class LinkedList {
     }
 }
 class SinglyLinkList {
-    
+
 }
 
-class DNode{
-    constructor(data =null, prev =null, next =null){
+class DNode {
+    constructor(data = null, prev = null, next = null) {
         this.data = data;
         this.prev = prev;
         this.next = next;
     }
 }
-class DoublyLinkList{
+class DoublyLinkList {
     constructor() {
         this.first = null;
         this.last = null;
         this.cursor = null;
         this._count = 0;
     }
-    add =this.push;
-    push(data){
+    add() {
+        this.push(item);
+    }
+    push(data) {
         if (this.first === null) {
-            this.last =this.first =new DNode(data);
+            this.last = this.first = new DNode(data);
         } else {
-            this.last =new DNode(data, this.last); // 逆向链接
-            this.last.prev.next =this.last; // 顺向链接
+            this.last = new DNode(data, this.last); // 逆向链接
+            this.last.prev.next = this.last; // 顺向链接
         }
-        this.cursor =this.last;
+        this.cursor = this.last;
         this._count++;
     }
-    pop(){
+    pop() {
         // 1st use-case non element
-        if (this.first === null) { 
+        if (this.first === null) {
             return null;
-        } 
+        }
         // 2nd use-case one element
         else if (this.last.prev === null) {
-            let tempNode =this.last;
-            this.cursor =this.first =this.last =null;
-        } 
+            let tempNode = this.last;
+            this.cursor = this.first = this.last = null;
+        }
         // 3rd use-case more element
         else {
-            let tempNode =this.last;
+            let tempNode = this.last;
             //
         }
     }
-    get length(){
+    get length() {
         return this._count;
     }
-    toString(){
-        let result ='[ ', currNode =first;
-        while(currNode){
-            result +=currNode.toString()+', ';
+    toString() {
+        let result = '[ ', currNode = first;
+        while (currNode) {
+            result += currNode.toString() + ', ';
 
-            currNode =currNode.next;
+            currNode = currNode.next;
         }
-        result +=' ]'
+        result += ' ]'
     }
-    toArray(){
+    toArray() {
         //
     }
 }
 
-class Arrays{
+class Arrays {
     static toString(array) {
         if (array == null)
             return "null";
