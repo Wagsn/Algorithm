@@ -23,6 +23,12 @@ class SinglyLinkList {
 }
 
 class DNode {
+    /**
+     * constructor of Double Node
+     * @param {*} data 
+     * @param {DNode} prev 
+     * @param {DNode} next 
+     */
     constructor(data = null, prev = null, next = null) {
         this.data = data;
         this.prev = prev;
@@ -37,10 +43,10 @@ class DoublyLinkList {
         this._first = null;
         this._last = null;
         this._cursor = null;
-        this._previous = null; // the previous node for last operation
+        // this._previous = null; // the previous node for last operation
         this._count = 0; // counter
     }
-    // append a element for this list 
+    // Appends new elements to a List, and returns the new length of the List.
     push(data) {
         // 1st use-case this is a empty list
         if (this._first === null) {
@@ -54,9 +60,15 @@ class DoublyLinkList {
         this._cursor = this._last;
         return ++this._count;
     }
-    // insert a element to cursor position and return the count
-    insert(data) {
-        //
+    /**
+     * Insert a element to cursor or input position and return the count
+     * #Unfinished#
+     * @param {any} data element
+     * @param {number} pos Insertion position
+     * @returns {number} count of elements
+     * @version 1.0
+     */
+    insert(data, pos) {
         let newNode = new DNode(data);
         // 1st use-case cursor is first
         if (this._cursor == this._first) {
@@ -64,7 +76,10 @@ class DoublyLinkList {
             this._first.next.prev = this._first; // 逆向链接
         }
         // 2nd use-case cursor is middle
+    }
 
+    insertAll(datas, pos) {
+        //
     }
     // remove the last of the list and return it
     pop() {
