@@ -1,7 +1,4 @@
-// WQueue.js
-
-require("WS_LinkedList");
-
+import "WS_LinkedList";
 
 // Queue that first-in-first-out follow the List 
 class WS_Queue {
