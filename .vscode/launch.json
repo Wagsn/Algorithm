@@ -7,17 +7,13 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Mocha Tests",
-            "program": "D:/AppData/NodeJS/node_modules/mocha/bin/_mocha",
-            "args": [
-                "-u",
-                "tdd",
-                "--timeout",
-                "999999",
-                "--colors",
-                "${workspaceFolder}/Algorithm\\src\\datastructure\\WSet.js"
+            "name": "Launch via NPM",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
             ],
-            "internalConsoleOptions": "openOnSessionStart"
+            "port": 9229
         }
     ]
 }
