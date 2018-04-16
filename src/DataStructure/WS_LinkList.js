@@ -48,7 +48,7 @@ class DoublyLinkList {
         this._count = 0; // counter
     }
     // Appends new elements to a List, and returns the new length of the List.
-    push(data) {
+    push(data =null) {
         // 1st use-case empty list
         if (this._first === null) {
             this._cursor = this._last = this._first = new DNode(data);
@@ -61,39 +61,45 @@ class DoublyLinkList {
         this._cursor = this._last;
         return ++this._count;
     }
-    /**
-     * Insert a element to cursor or input position and return the count
-     * #Unfinished#
-     * @param {any} data element
-     * @param {number} pos Insertion position
-     * @returns {number} count of elements
-     * @version 1.0
-     */
-    insert(data =null, pos= -1) {
-        // 1st use-case use error
-        if(pos<-1 || pos>this._count){
-            return -1; // Insert Position exception
-        }
-        // 2nd use-case default position is cursor position
-        if(pos == -1){
+    // /**
+    //  * Insert a element to cursor or input position and return the count
+    //  * #Unfinished#
+    //  * @param {any} data element
+    //  * @param {number} pos Insertion position
+    //  * @returns {number} count of elements
+    //  * @version 1.0
+    //  */
+    // insert(data =null, pos= -1) {
+    //     // 1st use-case use error
+    //     if(pos<-1 || pos>this._count){
+    //         return -1; // Insert Position exception
+    //     }
+    //     // 2nd use-case default position is cursor position
+    //     if(pos == -1){
             
-        }
-        // 3rd use-case 
-        if(pos)
-        let newNode = new DNode(data);
-        // 1st use-case non element
-        if (this._cursor == null){
-            this._cursor this._last = this._first = new DNode(data, null, this._first); // 顺向链接,
-        }
-        // 1st use-case cursor is first or non element
-        if (this._cursor == this._first) {
-            this._cursor = this._first = new DNode(data, null, this._first); // 顺向链接, the first point to the new node
-            this._first.next.prev = this._first; // 逆向链接
-        }
-        // 2nd use-case cursor is middle
-    }
+    //     }
+    //     // 3rd use-case 
+    //     if(pos)
+    //     let newNode = new DNode(data);
+    //     // 1st use-case non element
+    //     if (this._cursor == null){
+    //         this._cursor =this._last = this._first = new DNode(data, null, this._first); // 顺向链接,
+    //     }
+    //     // 1st use-case cursor is first or non element
+    //     if (this._cursor == this._first) {
+    //         this._cursor = this._first = new DNode(data, null, this._first); // 顺向链接, the first point to the new node
+    //         this._first.next.prev = this._first; // 逆向链接
+    //     }
+    //     // 2nd use-case cursor is middle
+    // }
+
     // 插入数据， 输入： 数据、索引， 输出： 长度
     // 
+    /**
+     * 
+     * @param {*} value 数据
+     * @param {number} index 索引
+     */
     insert(value, index){ // default insert to the first
         if(index < 0 || index > this._count){
             return -1;
