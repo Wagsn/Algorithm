@@ -44,10 +44,16 @@ class DoublyLinkList {
         this._first = null;
         this._last = null;
         this._cursor = null;
+        this._preIndex =0;
         // this._previous = null; // the previous node for last operation
         this._count = 0; // counter
     }
     // Appends new elements to a List, and returns the new length of the List.
+    /**
+     * 
+     * @param {*} data data of element
+     * @returns {number} count of elements
+     */
     push(data =null) {
         // 1st use-case empty list
         if (this._first === null) {
@@ -93,14 +99,14 @@ class DoublyLinkList {
     //     // 2nd use-case cursor is middle
     // }
 
-    // 插入数据， 输入： 数据、索引， 输出： 长度
-    // 
     /**
-     * 
-     * @param {*} value 数据
+     * Insert element at index,  
+     * 插入数据， 输入： 数据、索引， 输出： 长度
+     * @param {*} data 数据
      * @param {number} index 索引
+     * @returns {number} this._count
      */
-    insert(value, index){ // default insert to the first
+    insert(data, index){ // default insert to the first
         if(index < 0 || index > this._count){
             return -1;
         }
@@ -112,7 +118,7 @@ class DoublyLinkList {
         let node = null;
         // 在链首插入
         if(index === 0){
-            node = new DNode(value, null, this._first);
+            node = new DNode(data, null, this._first);
             if(this._first !== null){
                 this._first.prev =node;
             }
@@ -120,23 +126,23 @@ class DoublyLinkList {
         } 
         // 在链中及链尾插入
         else {
-            node = new DNode(value, insertPos, insertPos.next);
+            node = new DNode(data, insertPos, insertPos.next);
             insertPos.next.prev =node;
             insertPos.next = node;
         }
         return ++this._count;
     }
     // add at first
-    unshift(value){
-        return this.insert(value, 0);
+    unshift(data){
+        return this.insert(data, 0);
     }
     // add at last
-    push(value){
+    push(data){
         if(this._first === null){
-            this._first = new Node(value, this._last);
+            this._first = new Node(data, this._last);
             this._count++;
         } else {
-            this.insert(value, this._count);
+            this.insert(data, this._count);
         }
         return this._count;
     }
