@@ -21,7 +21,7 @@ class LinkedList {
 class SinglyLinkList {
 
 }
-
+// use more memory than SNode to quick visit previous
 class DNode {
     /**
      * constructor of Double Node
@@ -37,7 +37,8 @@ class DNode {
 }
 // 顺向链接 == first to last
 // 逆向链接 == last to first
-// 双向链表 == double link list 
+// 双向链表 == double link list
+// the element is nullable and repeatable
 class DoublyLinkList {
     constructor() {
         this._first = null;
@@ -48,7 +49,7 @@ class DoublyLinkList {
     }
     // Appends new elements to a List, and returns the new length of the List.
     push(data) {
-        // 1st use-case this is a empty list
+        // 1st use-case empty list
         if (this._first === null) {
             this._cursor = this._last = this._first = new DNode(data);
         }
@@ -68,9 +69,13 @@ class DoublyLinkList {
      * @returns {number} count of elements
      * @version 1.0
      */
-    insert(data, pos) {
+    insert(data =null, pos= -1) {
         let newNode = new DNode(data);
-        // 1st use-case cursor is first
+        // 1st use-case non element
+        if (this._cursor == null){
+            this._cursor this._last = this._first = new DNode(data, null, this._first); // 顺向链接,
+        }
+        // 1st use-case cursor is first or non element
         if (this._cursor == this._first) {
             this._cursor = this._first = new DNode(data, null, this._first); // 顺向链接, the first point to the new node
             this._first.next.prev = this._first; // 逆向链接
