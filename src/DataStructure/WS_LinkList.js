@@ -5,10 +5,12 @@ class Node {
         this.data = data;
     }
 }
-class SNode extends Node {
+
+class SNode {
     constructor(data = null, next = null) {
-        super(data);
-        thus.next = data;
+        this.first = null;
+        this.last = null;
+        this.cursor = null;
     }
 }
 class LinkedList {
@@ -18,10 +20,49 @@ class LinkedList {
         this.cursor = null;
     }
 }
+/**
+ * 单链表
+ */
 class SinglyLinkList {
-
+    constructor() {
+        //
+    }
 }
-// use more memory than SNode to quick visit previous
+
+/**
+ * 链接
+ * @param {Node} prevNode 
+ * @param {Node} nextNode 
+ */
+function linkNode(prevNode, nextNode) {
+    prevNode.next =nextNode;
+    nextNode.prev =prevNode;
+}
+/**
+ * 断开链接
+ * @param {*} prevNode 
+ * @param {*} nextNode 
+ */
+function breakLink(prevNode, nextNode) {
+    prevNode.next =null;
+    nextNode.prev =null;
+}
+/**
+ * 插入
+ * @param {*} insertNode 
+ * @param {*} prevNode 
+ * @param {*} nextNode 
+ */
+function insertNode(insertNode, prevNode, nextNode) {
+    insertNode.prev =prevNode;
+    insertNode.next =nextNode;
+    prevNode.next =insertNode;
+    nextNode.prev =insertNode;
+}
+/**
+ * Use more memory than SNode to quick visit previous
+ * 双链表节点
+ */
 class DNode {
     /**
      * constructor of Double Node
@@ -35,29 +76,30 @@ class DNode {
         this.next = next;
     }
 }
-// 顺向链接 == first to last
-// 逆向链接 == last to first
-// 双向链表 == double link list
-// the element is nullable and repeatable
+/**
+ * 顺向链接 == first to last        
+ * 逆向链接 == last to first        
+ * 双向链表 == double link list     
+ * the element is nullable and repeatable
+ */
 class DoublyLinkList {
     constructor() {
         this._first = null;
         this._last = null;
         this._cursor = null;
-        this._preIndex =0;
+        // this._preIndex =0;
         // this._previous = null; // the previous node for last operation
         this._count = 0; // counter
     }
-    // Appends new elements to a List, and returns the new length of the List.
     /**
-     * 
-     * @param {*} data data of element
+     * Appends new elements to a List, and returns the new length of the List.
+     * @param {*} data nullable, data of element
      * @returns {number} count of elements
      */
     push(data =null) {
         // 1st use-case empty list
         if (this._first === null) {
-            this._cursor = this._last = this._first = new DNode(data);
+            this._last = this._first = new DNode(data);
         }
         // 2nd use-case there had some elements
         else {
@@ -98,9 +140,12 @@ class DoublyLinkList {
     //     }
     //     // 2nd use-case cursor is middle
     // }
-
+    // insert to preIndex
+    append(data){
+        //
+    }
     /**
-     * Insert element at index,  
+     * Insert element at index:  0 ~ count  
      * 插入数据， 输入： 数据、索引， 输出： 长度
      * @param {*} data 数据
      * @param {number} index 索引
