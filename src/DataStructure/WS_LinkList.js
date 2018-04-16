@@ -70,6 +70,16 @@ class DoublyLinkList {
      * @version 1.0
      */
     insert(data =null, pos= -1) {
+        // 1st use-case use error
+        if(pos<-1 || pos>this._count){
+            return -1; // Insert Position exception
+        }
+        // 2nd use-case default position is cursor position
+        if(pos == -1){
+            
+        }
+        // 3rd use-case 
+        if(pos)
         let newNode = new DNode(data);
         // 1st use-case non element
         if (this._cursor == null){
@@ -82,11 +92,48 @@ class DoublyLinkList {
         }
         // 2nd use-case cursor is middle
     }
-
+    // 插入数据， 输入： 数据、索引， 输出： 长度
+    // 
+    insert(value, index){ // default insert to the first
+        if(index < 0 || index > this._count){
+            return -1;
+        }
+        let insertPos = this._first;
+        //找到需要插入的位置的节点, insertPos 是index的上一个节点， index从0开始
+        for(let i = 0; i < index - 1; i++){
+            insertPos = insertPos.next;
+        }
+        let node = null;
+        // 在链首插入
+        if(index === 0){
+            node = new DNode(value, this._first);
+            this._first = node;
+        } 
+        // 在链中及链尾插入
+        else {
+            node = new DNode(value, insertPos.next);
+            insertPos.next = node;
+        }
+        return ++this._count;
+    }
+    // add at first
+    unshift(value){
+        return this.insert(value);
+    }
+    // add at last
+    push(value){
+        if(this.head === null){
+            this.head = new Node(value, this.tail);
+            this.length++;
+        } else {
+            this.insert(this.length, value);
+        }
+        return this.length;
+    }
     insertAll(datas, pos) {
         //
     }
-    // remove the last of the list and return it
+    // premove the last of the list and return it
     pop() {
         // 1st use-case non element
         if (this._first === null) {
