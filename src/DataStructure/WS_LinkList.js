@@ -142,16 +142,20 @@ class DoublyLinkList {
     // }
     // insert to preIndex
     append(data){
-        //
+        // 1st use-case empty list
+        if(this._cursor === null){
+            this.insert(data)
+        }
     }
     /**
      * Insert element at index:  0 ~ count  
      * 插入数据， 输入： 数据、索引， 输出： 长度
+     * 作用： 遍历找到输入索引节点，在其前方插入输入节点
      * @param {*} data 数据
      * @param {number} index 索引
      * @returns {number} this._count
      */
-    insert(data, index){ // default insert to the first
+    insert(data, index = 0){ // default insert to the first
         if(index < 0 || index > this._count){
             return -1;
         }
@@ -176,6 +180,16 @@ class DoublyLinkList {
             insertPos.next = node;
         }
         return ++this._count;
+    }
+    // remove the first and return it
+    shift(){
+        // 1st use-case empty list
+        if(this._first === null){
+            return this._count;
+        }
+        // 2nd use-case one element
+        // 3rd use-case more elements
+        
     }
     // add at first
     unshift(data){
