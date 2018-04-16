@@ -112,29 +112,33 @@ class DoublyLinkList {
         let node = null;
         // 在链首插入
         if(index === 0){
-            node = new DNode(value, this._first);
+            node = new DNode(value, null, this._first);
+            if(this._first !== null){
+                this._first.prev =node;
+            }
             this._first = node;
         } 
         // 在链中及链尾插入
         else {
-            node = new DNode(value, insertPos.next);
+            node = new DNode(value, insertPos, insertPos.next);
+            insertPos.next.prev =node;
             insertPos.next = node;
         }
         return ++this._count;
     }
     // add at first
     unshift(value){
-        return this.insert(value);
+        return this.insert(value, 0);
     }
     // add at last
     push(value){
-        if(this.head === null){
-            this.head = new Node(value, this.tail);
-            this.length++;
+        if(this._first === null){
+            this._first = new Node(value, this._last);
+            this._count++;
         } else {
-            this.insert(this.length, value);
+            this.insert(value, this._count);
         }
-        return this.length;
+        return this._count;
     }
     insertAll(datas, pos) {
         //
