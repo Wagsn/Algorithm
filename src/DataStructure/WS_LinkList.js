@@ -97,17 +97,7 @@ class DoublyLinkList {
      * @returns {number} count of elements
      */
     push(data =null) {
-        // 1st use-case empty list
-        if (this._first === null) {
-            this._last = this._first = new DNode(data);
-        }
-        // 2nd use-case there had some elements
-        else {
-            this._last = new DNode(data, this._last); // 逆向链接，last point to the new node
-            this._last.prev.next = this._last; // 顺向链接
-        }
-        this._cursor = this._last;
-        return ++this._count;
+        return this.addLast(data);
     }
     // /**
     //  * Insert a element to cursor or input position and return the count
