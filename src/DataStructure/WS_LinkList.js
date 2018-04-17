@@ -140,18 +140,66 @@ class DoublyLinkList {
     //     }
     //     // 2nd use-case cursor is middle
     // }
-    // insert to preIndex
+    // insert to after preIndex
+    // 在上次插入节点后面追加
     append(data){
         // 1st use-case empty list
         if(this._cursor === null){
-            this.insert(data)
+            this.insert(data, 0);
+        }
+        // 2nd use-case more element
+        else {
+            //
+            let node =new DNode(data, this._cursor, this._cursor.next); //插入链接
+            node.prev.next =node; // 逆向链接
+            node.next.prev =node; // 顺向链接
+            this._cursor = node; // cursor point to the new node
+            ++this._count; // 数量增加
+        }
+        return this._count;
+    }
+    addIfEmpty(data){
+        // 1st use-case not empty, Use more frequently.
+        if(this._first !== null){
+            return -1;
+        }
+        // 2nd use-case empty list
+        else {
+            this._cursor =this._last =this._first =new DNode(data);
+            ++this._count;
+            return 0;
+        }
+    }
+    addLast(data){
+        // 1st use-case empty list
+        if(this.addIfEmpty(data) === 0){
+            return this._count;
+        }
+        // 2nd use-case more element
+        else {
+            this._cursor =this._last =new DNode(data, this._last);
+            this._last.prev.next =this._last;
+            return ++ this._count;
+        }
+    }
+    addFirst(data){
+        // 1st use-case empty
+        if(this.addIfEmpty(data) === 0){
+            return this._count;
+        }
+        // 2nd use-case more element
+        else {
+            this._cursor =this._first =new DNode(data, null, this._first);
+            this._first.next.prev =this._first;
+            return ++this._count;
         }
     }
     /**
+     * 供外部或内部调用， 默认插入第一个
      * Insert element at index:  0 ~ count  
      * 插入数据， 输入： 数据、索引， 输出： 长度
      * 作用： 遍历找到输入索引节点，在其前方插入输入节点
-     * @param {*} data 数据
+     * @param {any} data 数据
      * @param {number} index 索引
      * @returns {number} this._count
      */
@@ -168,10 +216,11 @@ class DoublyLinkList {
         // 在链首插入
         if(index === 0){
             node = new DNode(data, null, this._first);
-            if(this._first !== null){
-                this._first.prev =node;
+            if(this._first === null){
+                this._last =this._first =node;
             }
             this._first = node;
+            this._cursor = node;
         } 
         // 在链中及链尾插入
         else {
@@ -195,7 +244,7 @@ class DoublyLinkList {
     unshift(data){
         return this.insert(data, 0);
     }
-    // add at last
+    // add a element at last
     push(data){
         if(this._first === null){
             this._first = new Node(data, this._last);
