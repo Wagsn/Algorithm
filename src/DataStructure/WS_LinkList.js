@@ -148,6 +148,12 @@ class DoublyLinkList {
         }
         return this._count;
     }
+    /**
+     * Add if list is empty
+     * @param {*} data
+     * @returns {numbner} 0 the list is empty and add success 
+     *          -1
+     */
     addIfEmpty(data){
         // 1st use-case not empty, Use more frequently.
         if(this._first !== null){
