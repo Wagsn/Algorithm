@@ -3,15 +3,9 @@
 // Used To: preserve historical records
 // Node to hold data for Doubly Linked List
 // commonjs
-requier('LinkList');
+requier('WS_LinkList');
 // add a element at tail for history
-function HPush(data) {
-    this._dataStore.push(data);
-}
-// pop a element at tail for history as linklist
-function HPop() {
-    this._dataStore.pop(data);
-}
+
 // add a element after cursor, and all elements delete after cursor for history
 function HChange(data) {
     if (cursor == null || cursor.next == null) { // no element or add new hisory
@@ -25,21 +19,21 @@ function HChange(data) {
 class History {
     constructor() {
         this._dataStore =new LinkList();
-        this.push = HPush;
-        this.pop = HPop;
-        this.change = HChange;
+    }
+    push(data){
+        return this._dataStore.push(data);
+    }
+    pop(){
+        return this._dataStore.pop();
+    }
+    change(data){
+        return this._dataStore.addAsTail(data);
     }
     // getter of size
     get size() {
-        let count = 0,
-            currNode = first;
-        while (currNode) {
-            currNode = currNode.next;
-            count++;
-        }
-        return count;
+        return this._dataStore.size;
     }
-}
+}l
 // test 
 function main(params) {
     var history = new History();
@@ -49,7 +43,7 @@ function main(params) {
     history.push('004');
     history.push('005');
     history.push('006');
-    history.push
+    history.push('097');
 }
 
 main();
