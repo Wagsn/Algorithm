@@ -1,20 +1,8 @@
 // link list 
 // hold data for Linked Storage Structure
-class Node {
-    constructor(data = null) {
-        this.data = data;
-    }
-}
 
 class SNode {
     constructor(data = null, next = null) {
-        this.first = null;
-        this.last = null;
-        this.cursor = null;
-    }
-}
-class LinkedList {
-    constructor() {
         this.first = null;
         this.last = null;
         this.cursor = null;
@@ -27,37 +15,6 @@ class SinglyLinkList {
     constructor() {
         //
     }
-}
-
-/**
- * 链接
- * @param {Node} prevNode 
- * @param {Node} nextNode 
- */
-function linkNode(prevNode, nextNode) {
-    prevNode.next =nextNode;
-    nextNode.prev =prevNode;
-}
-/**
- * 断开链接
- * @param {*} prevNode 
- * @param {*} nextNode 
- */
-function breakLink(prevNode, nextNode) {
-    prevNode.next =null;
-    nextNode.prev =null;
-}
-/**
- * 插入
- * @param {*} insertNode 
- * @param {*} prevNode 
- * @param {*} nextNode 
- */
-function insertNode(insertNode, prevNode, nextNode) {
-    insertNode.prev =prevNode;
-    insertNode.next =nextNode;
-    prevNode.next =insertNode;
-    nextNode.prev =insertNode;
 }
 /**
  * Use more memory than SNode to quick visit previous
@@ -91,6 +48,17 @@ class DoublyLinkList {
         // this._previous = null; // the previous node for last operation
         this._count = 0; // counter
     }
+    // 增
+    // add a element at last
+    push(data){
+        if(this._first === null){
+            this._first = new Node(data, this._last);
+            this._count++;
+        } else {
+            this.insert(data, this._count);
+        }
+        return this._count;
+    }
     /**
      * Appends new elements to a List, and returns the new length of the List.
      * @param {*} data nullable, data of element
@@ -99,9 +67,11 @@ class DoublyLinkList {
     push(data =null) {
         return this.addLast(data);
     }
-    
-    // insert to after preIndex
-    // 在上次插入节点后面追加
+    /**
+     * insert to after preIndex. 
+     * 在上次插入节点后面追加
+     * @param {*} data 
+     */
     append(data){
         // 1st use-case empty list
         if(this._cursor === null){
@@ -181,7 +151,12 @@ class DoublyLinkList {
         let node = null;
         // 在链首插入
         if(index === 0){
-            this.addFirst(data);
+            node = new DNode(data, null, this._first);
+            if(this._first === null){
+                this._last =this._first =node;
+            }
+            this._first = node;
+            this._cursor = node;
         } 
         // 在链中及链尾插入
         else {
@@ -191,6 +166,10 @@ class DoublyLinkList {
         }
         return ++this._count;
     }
+    insertAll(datas, pos) {
+        //
+    }
+    // 删
     // remove the first and return it
     shift(){
         // 1st use-case empty list
@@ -204,19 +183,6 @@ class DoublyLinkList {
     // add at first
     unshift(data){
         return this.insert(data, 0);
-    }
-    // add a element at last
-    push(data){
-        if(this._first === null){
-            this._first = new Node(data, this._last);
-            this._count++;
-        } else {
-            this.insert(data, this._count);
-        }
-        return this._count;
-    }
-    insertAll(datas, pos) {
-        //
     }
     // premove the last of the list and return it
     pop() {
@@ -238,6 +204,7 @@ class DoublyLinkList {
         this._cursor = this._last;
         return tempNode.data;
     }
+    // 查
     get size() {
         return this._count;
     }
