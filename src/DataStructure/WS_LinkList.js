@@ -99,37 +99,7 @@ class DoublyLinkList {
     push(data =null) {
         return this.addLast(data);
     }
-    // /**
-    //  * Insert a element to cursor or input position and return the count
-    //  * #Unfinished#
-    //  * @param {any} data element
-    //  * @param {number} pos Insertion position
-    //  * @returns {number} count of elements
-    //  * @version 1.0
-    //  */
-    // insert(data =null, pos= -1) {
-    //     // 1st use-case use error
-    //     if(pos<-1 || pos>this._count){
-    //         return -1; // Insert Position exception
-    //     }
-    //     // 2nd use-case default position is cursor position
-    //     if(pos == -1){
-            
-    //     }
-    //     // 3rd use-case 
-    //     if(pos)
-    //     let newNode = new DNode(data);
-    //     // 1st use-case non element
-    //     if (this._cursor == null){
-    //         this._cursor =this._last = this._first = new DNode(data, null, this._first); // 顺向链接,
-    //     }
-    //     // 1st use-case cursor is first or non element
-    //     if (this._cursor == this._first) {
-    //         this._cursor = this._first = new DNode(data, null, this._first); // 顺向链接, the first point to the new node
-    //         this._first.next.prev = this._first; // 逆向链接
-    //     }
-    //     // 2nd use-case cursor is middle
-    // }
+    
     // insert to after preIndex
     // 在上次插入节点后面追加
     append(data){
@@ -211,12 +181,7 @@ class DoublyLinkList {
         let node = null;
         // 在链首插入
         if(index === 0){
-            node = new DNode(data, null, this._first);
-            if(this._first === null){
-                this._last =this._first =node;
-            }
-            this._first = node;
-            this._cursor = node;
+            this.addFirst(data);
         } 
         // 在链中及链尾插入
         else {
