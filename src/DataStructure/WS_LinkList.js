@@ -49,16 +49,6 @@ class DoublyLinkList {
         this._count = 0; // counter
     }
     // 增
-    // add a element at last
-    push(data){
-        if(this._first === null){
-            this._first = new Node(data, this._last);
-            this._count++;
-        } else {
-            this.insert(data, this._count);
-        }
-        return this._count;
-    }
     /**
      * Appends new elements to a List, and returns the new length of the List.
      * @param {*} data nullable, data of element
@@ -130,6 +120,12 @@ class DoublyLinkList {
             return ++this._count;
         }
     }
+    addIn(data) {
+        //
+    }
+    addAfter(data) {
+        //
+    }
     /**
      * 供外部或内部调用， 默认插入第一个
      * Insert element at index:  0 ~ count  
@@ -166,11 +162,21 @@ class DoublyLinkList {
         }
         return ++this._count;
     }
+    // add at first
+    unshift(data){
+        return this.addFirst(data);
+    }
     insertAll(datas, pos) {
         //
     }
     // 删
     // remove the first and return it
+    removeFirst(){
+        //
+    }
+    removeLast(){
+        //
+    }
     shift(){
         // 1st use-case empty list
         if(this._first === null){
@@ -179,10 +185,6 @@ class DoublyLinkList {
         // 2nd use-case one element
         // 3rd use-case more elements
         
-    }
-    // add at first
-    unshift(data){
-        return this.insert(data, 0);
     }
     // premove the last of the list and return it
     pop() {
