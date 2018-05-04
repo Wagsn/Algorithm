@@ -58,14 +58,14 @@ class DoublyLinkList {
         return this.addLast(data);
     }
     /**
-     * insert to after preIndex. 
+     * insert to after preIndex or cursor. 
      * 在上次插入节点后面追加
      * @param {*} data 
      */
     append(data){
         // 1st use-case empty list
-        if(this._cursor === null){
-            this.insert(data, 0);
+        if(this.addIfEmpty(data) === 0){
+            return this._count;
         }
         // 2nd use-case more element
         else {
