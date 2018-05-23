@@ -1,35 +1,39 @@
 // Binary Tree
 // Tree Node
-function TNode(data, child, next) {
-    this.data = data;
-    this.child = child;
-    this.next = next;
-
+class TNode {
+    constructor(data, child, next) {
+        this.data = data;
+        this.child = child;
+        this.next = next;
+    }
 }
 // Binary Tree Node
-function BTNode(data, left, right) {
-    this.data = data;
-    this.left = left; // 0
-    this.right = right; // 1
-    this.toString = function () {
-        return this.data;
-    };
-
+class BTNode {
+    constructor(data, left, right) {
+        this.data = data;
+        this.left = left; // 0
+        this.right = right; // 1
+        this.toString = function () {
+            return this.data;
+        };
+    }
 }
 
 // Ordered Binary Tree 有序二叉树, Binary Search Tree
-function OBTree() {
-    this.root = null; // BTNode
-    this._count = 0; // counter 计数器
-
-    this.insert = OBTInsert;
-    this.inorder = BTInorder;
-    this.preorder = BTPreorder;
-    this.postorder = BTPostorder;
-    this.getMin = OBTGetMin;
-    this.getMax = OBTGetMax;
-    this.findNodeBy = OBTFindNodeBy;
-    this.size = function ()
+class OBTree {
+    constructor() {
+        this.root = null; // BTNode
+        this._count = 0; // counter 计数器
+        this.insert = OBTInsert;
+        this.inorder = BTInorder;
+        this.preorder = BTPreorder;
+        this.postorder = BTPostorder;
+        this.getMin = OBTGetMin;
+        this.getMax = OBTGetMax;
+        this.findNodeBy = OBTFindNodeBy;
+        this.size = function () {
+        };
+    }
 }
 // index of data
 // left is 0, right is 1
