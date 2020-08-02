@@ -1,5 +1,14 @@
-// def 是模板 不依赖外部变量 可以在任意位置定义
-// var 是变量 可依赖外部变量 按照顺序执行
+// def 是模板 不依赖外部变量
+// var 是变量 可依赖外部变量
+
+// 函数定义 可以循环引用而不管定义顺序 函数内部有终结条件
+def func_a 
+    call func_b
+def func_b
+    call func_a
+// 值定义 按照顺序执行 不可以循环引用
+var var_a = var_b  // var_b undefined
+var var_b = var_a
 
 // 程序入口
 def main()
@@ -29,6 +38,8 @@ def HumanInfo(string, i32, i32, f32)
 tip = HumanInfo('wS', 24, 178, 61.5)
 // 定义数组 固定长度特定类型的组成的序列
 arr = [0, 1, 2, 3, 4, 5]
+// 申明数组 长度和类型都是数组的基本元素 只有这样才能在栈中存在 如果一个变量所占用的空间不确定 那么扩张的空间无法在紧凑的栈中申请 采用割裂的方式不可取
+arr: [20]int
 // 定义切片 动态结构 slice(ptr, len, cap) (开始位置地址, 大小, 容量) make([]type, size, cap)
 arr = arr[0:3]  //< [0, 1, 2]
 // copy(dst, src) 取两个切片最小的长度复制 返回实际复制的个数 切片复制 删除第一个元素
@@ -41,10 +52,10 @@ for idx, val in range arr
 // 多维切片 
 slice = [][]int {{100}, {100, 200}} // (ptr, len=2, cap=2) -> [(ptr, len=1, cap=1), (ptr, len=2, cap=2)] -> [100] [100, 200]
 
-// 定义结构
+// 定义结构 结构字面量
 def HumanInfo {name: string, age: i32, height: i32, weight: f32}
 obj = HumanInfo {name: 'WS', age: 24, height: 178, weight: 61.5}
-// 定义无名结构
+// 定义无名结构 结构字面量
 obj = {name: 'WS', age: 24, height: 178, weight: 61.5}
 obj = {name: string, age: i32, height: i32, weight: f32}
 
@@ -78,7 +89,7 @@ table = {
     age: [24, 56, 45]
 }
 name, age = table[0]  //< {name: 'ws', age: 24}
-// 定义多个变量
+// 返回多值
 def getVals()
     x, y, z = 1, 2, 3
     return 1 = 1 ? (x, y, z) : (1, 2, 3)
@@ -161,24 +172,33 @@ for val of arr
 // 流程控制
 // break continue goto return
 
-// 定义函数 编译期静态概念 def func_name(parm_type) ret_type
+// 关键字定义函数 编译期静态概念 def func_name(parm_type) ret_type
 def swap(x string, y string) (string, string) {
    return y, x
-}
-def swap(x, y string) (a, b string) {
-   a = y
-   b = x
-   return
 }
 // 定义函数类型
 def unary (int) int
 // 函数类型实例
-add: unary<int, bool> = (i) {
+cond: unary<int, bool> = (i) {
     return i != 0
 }
+// 函数代码块 ref 手动申明为引用传递 'hello'
+ref str = 'hello'
+val str = readLine()  // 报错 readLine() 不能给一个值类型(固定长度和类型)的变量赋值
+var str = readLine()  // str 是引用类型变量
+body = {
+    x = 0;
+    a + x
+}
+// 
+
 // 泛型定义函数类型 基本类型会编译时定义 动态类型动态定义
 def unary<t, r> (t) r
 // 函数调用返回右值 ret_vals = func_name(parm_vals)
+// 函数调用函数 apply(func_name, parm_type...)
+var = apply(sqrt, 10)  // 100
+// 函数定义函数 defun(func_name, (parm_type...), func_body)
+fun = defun(func_name, (x, y), { return x + y; })
 // 函数签名作为形参
 def visit(lst []int, fun (int)) {
     for v of lst
@@ -208,32 +228,43 @@ map = {
     'run': (){},
     'fly': (){}
 }
-// 函数闭包 运行期动态概念 一个函数返回一个包含该函数局部变量的引用的函数
-def query() () int {
-    i = 0
-    return () int {
-        return i++
-    }
+// 定义即调用
+(x:int){}(10)
+
+// 函数闭包 运行期动态概念 函数+引用环境=闭包 一个引用了外部变量的匿名函数
+// 闭包对环境中变量引用的过程叫做捕获 捕获分为复制捕获和引用捕获 捕获的变量会跟着闭包的生命周期
+// 形参是每次调用都重新传递 捕获是每次调用都是同一个
+str = 'hello'
+foo = () {
+    str = 'world'
 }
-next = query()
-next()  //< 0
-next()  //< 1
-next2 = query()
-next2()  //< 0
-def query() {
-    i = 0
-    return () {
-        j = 0
-        return () {
-            k = 0
-        }
-    }
-}
+foo()
 // 默认参数
 def func(x, y, y)
 def func(x, y) = func(x, y, 0)
 def func(x) = func(x, 0)
-
+// 可变参数定义 语法糖 编译时会转换成 def add(args []int) 所以不能重复定义 def add(args []int)
+def add(args ...int) {
+    sum = 0
+    for val in args
+        sum += val
+    return sum
+}
+// 可变参数调用 语法糖 编译时会转换成 var = add([1, 2, 3, 4, 5])
+var = add(1, 2, 3, 4, 5) | add([1, 2, 3]...) //< 15
+// 延迟执行 函数执行结束后逆序执行
+def gerSize(path)
+    file = os.open(path)
+    if file == nil return 0
+    defer file.close()
+    return file.size()
+// 递归调用
+def fibonacci(n)
+    if n < 2 return 1
+    else return fibonacci(n - 1) + fibonacci(n - 2)
+def factorial(n)
+    if n > 0 return factorial(n - 1)
+    else return 1
 // 接口
 def Runnable {
     run()
